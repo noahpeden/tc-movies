@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import { AppContextProvider } from './AppContext';
+import Home from './Home';
+import MovieList from './MovieList';
+import MovieDetails from './MovieDetails';
+import NavBar from './NavBar';
+import Favorites from './Favorites'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <AppContextProvider>
+        <NavBar />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/movies/:id" component={MovieDetails} />
+          <Route path="/movies" component={MovieList} />
+          <Route path="/favorites" component={Favorites} />
+        </Switch>
+      </AppContextProvider>
+    </main>
   );
 }
 
